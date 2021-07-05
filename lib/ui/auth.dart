@@ -1,4 +1,5 @@
 import 'package:crypto_wallet/net/flutter_fire.dart';
+import 'package:crypto_wallet/ui/homeView.dart';
 import 'package:flutter/material.dart';
 
 class Auth extends StatefulWidget {
@@ -55,7 +56,8 @@ class _AuthState extends State<Auth> {
                   bool shouldNavigate =
                       await register(_emailFiled.text, _password.text);
                   if (shouldNavigate) {
-                    //Navigate
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeView()));
                   }
                 },
                 child: Text("Register"),
@@ -73,7 +75,8 @@ class _AuthState extends State<Auth> {
                   bool shouldNavigate =
                       await signIn(_emailFiled.text, _password.text);
                   if (shouldNavigate) {
-                    //Navigate
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeView()));
                   }
                 },
                 child: Text("Login"),
