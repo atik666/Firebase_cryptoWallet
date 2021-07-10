@@ -12,6 +12,7 @@ class Auth extends StatefulWidget {
 class _AuthState extends State<Auth> {
   TextEditingController _emailFiled = TextEditingController();
   TextEditingController _password = TextEditingController();
+  double height = 30.0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,45 +24,40 @@ class _AuthState extends State<Auth> {
           color: Colors.blueAccent,
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextFormField(
-              controller: _emailFiled,
-              decoration: InputDecoration(
-                hintText: "Input your email",
-                labelText: "Email",
-                labelStyle: TextStyle(color: Colors.white),
-                hintStyle: TextStyle(color: Colors.white),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.3,
+              child: TextFormField(
+                style: TextStyle(color: Colors.white),
+                controller: _emailFiled,
+                decoration: InputDecoration(
+                  hintText: "Input your email",
+                  labelText: "Email",
+                  labelStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.white),
+                ),
               ),
             ),
-            TextFormField(
-              controller: _password,
-              obscureText: true,
-              decoration: InputDecoration(
-                hintText: "Input your password",
-                labelText: "Password",
-                labelStyle: TextStyle(color: Colors.white),
-                hintStyle: TextStyle(color: Colors.white),
-              ),
+            SizedBox(
+              height: height,
             ),
             Container(
-              width: MediaQuery.of(context).size.width / 1.4,
-              height: 45,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
-                color: Colors.white,
+              width: MediaQuery.of(context).size.width / 1.3,
+              child: TextFormField(
+                style: TextStyle(color: Colors.white),
+                controller: _password,
+                obscureText: true,
+                decoration: InputDecoration(
+                  hintText: "Input your password",
+                  labelText: "Password",
+                  labelStyle: TextStyle(color: Colors.white),
+                  hintStyle: TextStyle(color: Colors.white),
+                ),
               ),
-              child: MaterialButton(
-                onPressed: () async {
-                  bool shouldNavigate =
-                      await register(_emailFiled.text, _password.text);
-                  if (shouldNavigate) {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeView()));
-                  }
-                },
-                child: Text("Register"),
-              ),
+            ),
+            SizedBox(
+              height: height,
             ),
             Container(
               width: MediaQuery.of(context).size.width / 1.4,
@@ -81,6 +77,31 @@ class _AuthState extends State<Auth> {
                 },
                 child: Text("Login"),
               ),
+            ),
+            SizedBox(
+              height: height,
+            ),
+            Container(
+              width: MediaQuery.of(context).size.width / 1.4,
+              height: 45,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: Colors.green[200],
+              ),
+              child: MaterialButton(
+                onPressed: () async {
+                  bool shouldNavigate =
+                      await register(_emailFiled.text, _password.text);
+                  if (shouldNavigate) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomeView()));
+                  }
+                },
+                child: Text("Register"),
+              ),
+            ),
+            SizedBox(
+              height: height,
             ),
           ],
         ),
