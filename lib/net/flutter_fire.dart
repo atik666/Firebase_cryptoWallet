@@ -35,7 +35,7 @@ Future<bool> addCoin(String id, String amount) async {
     String uid = FirebaseAuth.instance.currentUser!.uid;
     var value = double.parse(amount);
     DocumentReference documentReference = FirebaseFirestore.instance
-        .collection('users')
+        .collection('Users')
         .doc(uid)
         .collection('Coins')
         .doc(id);
@@ -52,5 +52,16 @@ Future<bool> addCoin(String id, String amount) async {
   } catch (e) {
     return false;
   }
+  return true;
+}
+
+Future<bool> reomveCoin(String id) async {
+  String uid = FirebaseAuth.instance.currentUser!.uid;
+  FirebaseFirestore.instance
+      .collection("Users")
+      .doc(uid)
+      .collection('Coins')
+      .doc(id)
+      .delete();
   return true;
 }
